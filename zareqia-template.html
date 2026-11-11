@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF8F2">
+<title>Dawat Naama | Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&family=Almendra:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#FAF8F2;
+  --white:#ffffff;
+  --gold:#C5A46D;
+  --celebration-gold:#D4AF37;
+  --antique:#A88950;
+  --sage:#A6AD94;
+  --ink:#343129;
+  --muted:#7A7467;
+  --line:rgba(212,175,55,.32);
+  --shadow:0 18px 46px rgba(52,49,41,.07);
+  --brand-gold:#bb9658;
+  --brand-wine:#6f1d33;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --script:'Pinyon Script','Cormorant Garamond',cursive;
+  --sans:'Montserrat',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  --font-brand:'Almendra','Cormorant Garamond',Georgia,serif;
+  --brand-mono:'Space Mono','Courier Prime',Courier,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ivory);color:var(--ink);font-family:var(--sans);overflow-x:hidden}
+body{margin:0;overflow-x:hidden}
+body.locked{overflow:hidden;height:100svh}
+button,a{font:inherit}button{cursor:pointer}
+section{scroll-margin-top:12px}
+.section{max-width:850px;margin:auto;padding:72px 22px}
+.eyebrow{font:500 .72rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--antique)}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);letter-spacing:.015em}
+.hero h1{color:#F5CF68}
+h2{font:400 clamp(2.2rem,6.5vw,3.4rem) var(--serif);margin:.28em 0;line-height:1.15}
+.script{font:400 clamp(2.1rem,6vw,2.9rem) var(--script);color:var(--antique);line-height:1.2}
+.divider{display:flex;align-items:center;justify-content:center;gap:15px;color:var(--celebration-gold);margin:20px auto}
+.divider:before,.divider:after{content:'';width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--celebration-gold),transparent)}
+.divider span{font-size:1.1rem}
+.card{position:relative;text-align:center;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:44px 28px;box-shadow:var(--shadow)}
+.card:before{content:'';position:absolute;inset:10px;border:1px solid rgba(212,175,55,.22);border-radius:10px;pointer-events:none}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+.audio{position:fixed;right:16px;top:16px;z-index:1001;border:1px solid var(--line);width:44px;height:44px;border-radius:50%;background:#faf8f2f0;color:var(--brand-wine);font-size:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:transform .2s}
+.audio:hover{transform:scale(1.06)}
+
+/* Envelope Intro */
+.intro{position:fixed;inset:0;z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 50% 38%,#fffefa 0%,#f7f2e8 52%,#e9e1d3 100%);transition:opacity .9s ease,visibility .9s;isolation:isolate}
+.intro:before{content:"";position:absolute;inset:14px;border:1px solid rgba(212,175,55,.45);pointer-events:none;box-shadow:inset 0 0 45px rgba(212,175,55,.06)}
+.intro.dismissed{opacity:0;visibility:hidden;pointer-events:none}
+.intro-copy{text-align:center;margin-bottom:28px}
+.intro-copy .script{font-size:clamp(2.6rem,8vw,3.8rem);text-shadow:0 2px 16px rgba(197,164,109,.35)}
+.intro-copy p{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:1.8;max-width:320px;margin:8px auto 0}
+.envelope{position:relative;width:min(84vw,370px);height:min(58vw,250px);min-height:190px;background:#354236;border-radius:6px;box-shadow:0 28px 60px rgba(51,40,22,.22),0 0 0 1px rgba(212,175,55,.45);perspective:900px;cursor:pointer;transition:transform .5s ease,box-shadow .5s ease}
+.envelope:hover{transform:translateY(-5px);box-shadow:0 36px 72px rgba(51,40,22,.28),0 0 0 1px rgba(212,175,55,.7)}
+.env-back{position:absolute;inset:0;background:#354236;border:1px solid rgba(212,175,55,.5);border-radius:6px}
+.env-card{position:absolute;z-index:1;inset:9% 7%;background:var(--ivory);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:transform .9s cubic-bezier(.16,1,.3,1);font:500 1.55rem var(--serif);letter-spacing:.04em}
+.env-card small{font:500 .65rem var(--sans);letter-spacing:.2em;color:var(--antique);text-transform:uppercase;margin-bottom:4px}
+.env-flap{position:absolute;inset:0;z-index:4;background:#29332b;clip-path:polygon(0 0,100% 0,50% 57%);transform-origin:top;transition:transform .8s ease}
+.env-front{position:absolute;inset:0;z-index:3;background:linear-gradient(145deg,transparent 49.4%,#2b352d 50%),linear-gradient(215deg,transparent 49.4%,#303b32 50%);clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%)}
+.env-front:after{content:"";position:absolute;inset:12px;border:1px solid rgba(212,175,55,.45);clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);pointer-events:none}
+.seal{position:absolute;z-index:5;top:42%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#f0d6a5,#a88950 75%);color:#49391d;font:600 1.05rem var(--serif);letter-spacing:.05em;box-shadow:0 4px 12px rgba(0,0,0,.3);border:1px solid rgba(247,231,194,.5);outline:1px dashed #735b30;outline-offset:4px;transition:opacity .3s,transform .3s}
+.envelope.open .env-flap{transform:rotateX(180deg);z-index:0}
+.envelope.open .env-card{transform:translateY(-45%) scale(1.08)}
+.envelope.open .seal{opacity:0;transform:translate(-50%,-50%) scale(1.5)}
+.intro-ornament{width:min(38vw,150px);height:26px;margin-top:22px;opacity:.75}
+.intro-ornament svg{width:100%;height:100%;stroke:var(--celebration-gold);fill:none;stroke-width:1.15}
+.skip{margin-top:28px;color:var(--muted);background:none;border:0;border-bottom:1px solid transparent;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
+.skip:hover{border-color:var(--antique);color:var(--antique)}
+
+/* Hero */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:70px 20px;color:white;background:#3a3f36}
+.hero-media,.hero-shade{position:absolute;inset:0;width:100%;height:100%}
+.hero-media{object-fit:cover;filter:brightness(.62);transform:scale(1.03)}
+.hero-shade{background:linear-gradient(180deg,rgba(40,43,35,.55),rgba(21,23,16,.85))}
+.hero-content{z-index:1;max-width:720px;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.hero .eyebrow{color:#f0dfbd}
+.hero h1{font:400 clamp(3.2rem,11vw,6rem)/1.02 var(--serif);margin:18px 0;letter-spacing:.025em}
+.hero h1 span{display:block;color:#FFDF73;background:linear-gradient(135deg,#FFF3C4 0%,#F5CF68 35%,#D4AF37 70%,#AA822A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 2px 22px rgba(212,175,55,.45),0 4px 30px rgba(0,0,0,.8);filter:drop-shadow(0 2px 14px rgba(0,0,0,.75))}
+.hero h1 .amp{display:inline-block;font:italic 300 clamp(2.2rem,6.5vw,4rem) var(--serif);color:#F5CF68;-webkit-text-fill-color:#F5CF68;margin:0 .15em;text-shadow:0 2px 18px rgba(212,175,55,.5)}
+.hero-countdown{margin:28px auto 0;display:flex;justify-content:center;gap:clamp(8px,3vw,18px)}
+.hero-time{min-width:62px;padding:12px 14px;border:1px solid rgba(234,216,180,.45);background:rgba(29,33,29,.6);border-radius:10px;backdrop-filter:blur(6px)}
+.hero-time strong{display:block;font:500 clamp(1.6rem,5vw,2.3rem) var(--serif);color:#fff;font-feature-settings:"tnum";font-variant-numeric:tabular-nums;line-height:1.1}
+.hero-time span{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:#f0dfbd}
+.scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;animation:float 2.5s ease-in-out infinite}
+@keyframes float{50%{transform:translate(-50%,-7px)}}
+
+/* Blessing Card */
+.welcome p{font:italic 1.35rem/1.7 var(--serif);max-width:620px;margin:16px auto;color:var(--ink)}
+.welcome .arabic{font:2.2rem var(--serif);color:var(--celebration-gold);margin-bottom:6px}
+.welcome .support{font:.86rem/1.8 var(--sans);color:var(--muted)}
+
+/* Scratch Card */
+.scratch-wrap{max-width:470px;margin:25px auto 0}
+.scratch-box{position:relative;height:270px;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);touch-action:none}
+.secret{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;background:radial-gradient(#fff,#f7f0e3)}
+.secret b{font:600 2.2rem var(--serif);letter-spacing:.05em;margin:8px;color:var(--ink)}
+.secret p{font:italic 1.2rem var(--serif);color:var(--muted)}
+#scratch{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;transition:opacity .7s}
+.scratch-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;font-size:.75rem;color:var(--muted)}
+.scratch-controls button{border:1px solid var(--line);border-radius:20px;padding:8px 16px;background:white;color:var(--brand-wine);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;transition:all .2s}
+.scratch-controls button:hover{background:var(--brand-wine);color:#fff}
+
+/* Celebrations Section - Completely clean, NO vertical lines, vibrant gold */
+#celebrationSection{scroll-margin-top:20px}
+#celebrationSection .celebration-intro{font:italic 1.15rem/1.65 var(--serif);color:var(--muted);max-width:600px;margin:0 auto 28px;text-align:center}
+#celebrationSection .timeline, /* Celebration Timeline - Clean Luxury & Balanced Alignment */
+#celebrationSection{
+  padding:clamp(38px,6vw,64px) 16px;
+  box-sizing:border-box;
+}
+#celebrationSection .celebration-intro{
+  font:italic clamp(.92rem,2.4vw,1.06rem)/1.6 var(--serif);
+  color:var(--muted);
+  max-width:480px;
+  margin:0 auto 26px;
+}
+.timeline{
+  position:relative;
+  max-width:760px;
+  margin:0 auto;
+  padding:0 !important;
+}
+#celebrationSection .timeline:before, .timeline:before,
+#celebrationSection .timeline:after, .timeline:after{
+  content:none !important;
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+}
+.timeline-nav{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  position:relative;
+  margin-bottom:26px;
+}
+.timeline-nav:before{
+  content:"";
+  position:absolute;
+  left:12%;
+  right:12%;
+  top:23px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.3),var(--celebration-gold),rgba(212,175,55,.3),transparent);
+  z-index:0;
+}
+.timeline-tab{
+  position:relative;
+  z-index:1;
+  background:transparent;
+  border:0;
+  outline:none;
+  padding:0 4px 6px;
+  text-align:center;
+  cursor:pointer;
+  transition:transform .22s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.timeline-tab:focus{
+  outline:none !important;
+}
+.timeline-tab:focus-visible{
+  outline:2px solid var(--celebration-gold) !important;
+  outline-offset:3px;
+  border-radius:8px;
+}
+.timeline-tab:hover{
+  transform:translateY(-2px);
+}
+.timeline-tab .tab-dot{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  margin:0 auto 9px;
+  background:var(--ivory);
+  border:1.5px solid rgba(212,175,55,.65);
+  color:var(--celebration-gold);
+  font:600 .98rem var(--sans);
+  box-shadow:0 0 0 5px var(--ivory);
+  transition:all .25s ease;
+}
+.timeline-tab .tab-date{
+  display:block;
+  font:600 .68rem/1.3 var(--sans);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  transition:color .25s ease;
+  white-space:nowrap;
+}
+.timeline-tab[aria-selected="true"] .tab-dot{
+  background:var(--brand-wine);
+  border-color:var(--celebration-gold);
+  color:#ffffff;
+  box-shadow:0 0 0 5px var(--ivory),0 6px 18px rgba(111,29,51,.28);
+  transform:scale(1.08);
+}
+.timeline-tab[aria-selected="true"] .tab-date{
+  color:var(--brand-wine);
+  font-weight:700;
+}
+
+/* Event Panel - Unified Clean Luxury Card */
+.event-panel{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(212,175,55,.42);
+  border-radius:16px;
+  background:linear-gradient(180deg,#ffffff 0%,#fdfbf7 100%);
+  box-shadow:0 18px 48px rgba(52,49,41,.06),0 2px 10px rgba(212,175,55,.05);
+  animation:panelIn .32s cubic-bezier(.2,.8,.2,1);
+  padding:clamp(26px,5vw,42px) clamp(18px,5vw,40px);
+  text-align:center;
+}
+.event-panel:before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(212,175,55,.2);
+  border-radius:10px;
+  pointer-events:none;
+}
+.event-panel:after{
+  display:none !important;
+}
+@keyframes panelIn{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.event-kicker-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font:700 .66rem var(--sans);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--celebration-gold);
+  margin-bottom:8px;
+}
+.event-kicker-badge .badge-dot{
+  color:var(--brand-wine);
+  font-size:.55rem;
+}
+.event-title{
+  font:500 clamp(1.85rem,5vw,2.65rem)/1.15 var(--serif);
+  color:var(--brand-wine);
+  margin:4px 0 12px;
+  letter-spacing:.015em;
+}
+.event-accent-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:0 auto 16px;
+  max-width:180px;
+}
+.event-accent-line:before,.event-accent-line:after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.45),transparent);
+}
+.event-accent-line span{
+  color:var(--celebration-gold);
+  font-size:.7rem;
+}
+
+/* Meta Lockup (Time & Venue) - Structured & Cleanly Aligned */
+.event-meta-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 16px;
+  max-width:520px;
+  margin:0 auto 16px;
+  padding:12px 16px;
+  background:rgba(212,175,55,.05);
+  border:1px solid rgba(212,175,55,.2);
+  border-radius:10px;
+  text-align:center;
+}
+.meta-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.meta-tag{
+  font:700 .6rem var(--sans);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--celebration-gold);
+}
+.meta-val{
+  font:500 .92rem/1.35 var(--serif);
+  color:var(--ink);
+}
+
+.event-desc{
+  font:italic 1.1rem/1.65 var(--serif);
+  color:var(--muted);
+  margin:0 auto;
+  max-width:520px;
+}
+
+/* Bottom Controls */
+.timeline-controls{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:22px;
+  padding:0 2px;
+  gap:10px;
+}
+.timeline-control{
+  border:1px solid rgba(212,175,55,.5);
+  background:#ffffff;
+  border-radius:24px;
+  padding:9px 18px;
+  color:var(--brand-wine);
+  font:600 .66rem var(--sans);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:all .22s ease;
+  box-shadow:0 3px 10px rgba(0,0,0,.03);
+  cursor:pointer;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.timeline-control:hover{
+  background:var(--brand-wine);
+  border-color:var(--brand-wine);
+  color:#ffffff;
+  transform:translateY(-1px);
+  box-shadow:0 4px 14px rgba(111,29,51,.2);
+}
+.timeline-status{
+  font:600 .68rem var(--sans);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  white-space:nowrap;
+  text-align:center;
+  flex-shrink:0;
+}
+
+@media(max-width:580px){
+  #celebrationSection{
+    padding:32px 14px;
+  }
+  #celebrationSection .celebration-intro{
+    font-size:.88rem;
+    line-height:1.45;
+    margin:0 auto 18px;
+    max-width:320px;
+  }
+  .timeline-nav{
+    gap:6px;
+    margin-bottom:18px;
+  }
+  .timeline-nav:before{
+    left:10%;
+    right:10%;
+    top:18px;
+  }
+  .timeline-tab{
+    padding:0 2px 4px;
+  }
+  .timeline-tab .tab-dot{
+    width:36px;
+    height:36px;
+    font-size:.84rem;
+    margin:0 auto 6px;
+    box-shadow:0 0 0 3px var(--ivory);
+  }
+  .timeline-tab[aria-selected="true"] .tab-dot{
+    box-shadow:0 0 0 3px var(--ivory),0 4px 12px rgba(111,29,51,.25);
+  }
+  .timeline-tab .tab-date{
+    font-size:.58rem;
+    letter-spacing:.04em;
+  }
+  
+  .event-panel{
+    padding:20px 14px;
+    border-radius:12px;
+  }
+  .event-panel:before{
+    inset:5px;
+    border-radius:8px;
+  }
+  .event-kicker-badge{
+    font-size:.58rem;
+    letter-spacing:.14em;
+    margin-bottom:4px;
+  }
+  .event-title{
+    font-size:1.55rem;
+    line-height:1.2;
+    margin:2px 0 8px;
+  }
+  .event-accent-line{
+    margin:0 auto 12px;
+  }
+  .event-meta-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px 12px;
+    padding:10px 12px;
+    margin:0 auto 12px;
+  }
+  .meta-tag{
+    font-size:.54rem;
+    letter-spacing:.14em;
+  }
+  .meta-val{
+    font-size:.84rem;
+    line-height:1.25;
+  }
+  .event-desc{
+    font-size:.88rem;
+    line-height:1.4;
+  }
+  
+  .timeline-controls{
+    margin-top:16px;
+    gap:6px;
+  }
+  .timeline-control{
+    padding:7px 13px;
+    font-size:.58rem;
+    letter-spacing:.08em;
+  }
+  .timeline-status{
+    font-size:.58rem;
+    letter-spacing:.08em;
+  }
+}
+
+/* Venue */
+.venue-img{display:block;width:100%;height:260px;object-fit:cover;border-radius:10px;margin:22px 0}
+.address{font-size:.88rem;line-height:1.7;color:var(--muted);max-width:520px;margin:0 auto 22px}
+.directions{display:inline-block;background:linear-gradient(130deg,var(--gold),var(--antique));color:white;border-radius:24px;padding:13px 28px;font:500 .72rem var(--sans);letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .25s;box-shadow:0 6px 18px rgba(187,150,88,.3)}
+.directions:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(187,150,88,.4)}
+
+/* Closing */
+.closing{padding:56px 30px}
+.closing p{font:italic 1.35rem/1.7 var(--serif);color:var(--ink);max-width:580px;margin:0 auto}
+.closing .sign{font:400 clamp(2.3rem,6vw,3.2rem) var(--script);color:var(--celebration-gold);margin:20px 0 6px;line-height:1.1}
+.closing strong{font:500 clamp(1.8rem,5.5vw,2.4rem) var(--serif);letter-spacing:.08em;color:var(--ink);display:block;margin-top:4px}
+
+/* Redesigned Footer Credits - Perfectly Centered, Balanced & Aligned */
+.brand-footer{
+  margin:0;
+  padding:46px 20px 52px;
+  background:#FAF8F2;
+  border-top:1px solid rgba(212,175,55,.3);
+  color:var(--brand-wine);
+  text-align:center;
+  box-sizing:border-box;
+}
+.footer-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  max-width:580px;
+  margin:0 auto;
+  width:100%;
+}
+.footer-love{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-family:var(--brand-mono);
+  font-weight:700;
+  font-size:clamp(0.82rem,2.8vw,0.98rem);
+  letter-spacing:.1em;
+  color:var(--brand-wine);
+  margin:0 0 14px;
+  line-height:1;
+}
+.footer-love .heart{
+  color:var(--brand-wine);
+  font-size:1.15em;
+  line-height:1;
+  display:inline-block;
+  transform:translateY(-1px);
+}
+.footer-brand-lockup{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  margin:0 auto 14px;
+}
+.footer-logo-img{
+  width:44px;
+  height:46px;
+  object-fit:contain;
+  display:block;
+  flex-shrink:0;
+}
+.footer-brand-name{
+  font-family:var(--font-brand);
+  font-weight:700;
+  font-size:clamp(2.1rem,6.8vw,2.85rem);
+  color:var(--brand-gold);
+  line-height:1;
+  letter-spacing:.02em;
+  display:inline-block;
+  margin:0;
+  padding:0;
+  transform:translateY(2px);
+}
+.footer-tagline{
+  font-family:var(--brand-mono);
+  font-weight:700;
+  font-size:clamp(0.74rem,2.4vw,0.92rem);
+  letter-spacing:.04em;
+  color:var(--brand-wine);
+  margin:0;
+  line-height:1.45;
+  text-align:center;
+}
+
+@media(max-width:440px){
+  .footer-love{letter-spacing:.04em}
+  .footer-brand-lockup{gap:10px}
+  .footer-logo-img{width:38px;height:40px}
+  .footer-brand-name{font-size:1.95rem}
+  .footer-tagline{font-size:0.72rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="locked">
+<button class="audio" id="audioToggle" aria-label="Toggle music" title="Toggle music">♫</button>
+<audio id="music" loop preload="none"><source src="https://assets.mixkit.co/music/preview/mixkit-romantic-wedding-harp-and-strings-1002.mp3" type="audio/mpeg"></audio>
+<div class="intro" id="intro" role="dialog" aria-label="Open wedding invitation">
+  <div class="intro-copy"><span class="script">A Royal Union</span><p>Tap the envelope to open your invitation</p></div>
+  <div class="envelope" id="envelope" tabindex="0" role="button" aria-label="Open invitation envelope">
+    <div class="env-back"></div><div class="env-card"><small>Wedding Invitation</small><span id="envNames">Ahad &amp; Ayesha</span></div>
+    <div class="env-flap"></div><div class="env-front"></div><div class="seal" id="seal">A&amp;A</div>
+  </div>
+  <div class="intro-ornament" aria-hidden="true"><svg viewBox="0 0 160 26"><path d="M3 13h45c12 0 14-10 23-10s11 10 18 10h68M48 13c10 0 14 10 23 10s13-10 18-10"/><circle cx="80" cy="13" r="3"/><path d="M76 13c-9-11-17-7-12-1m20 1c9-11 17-7 12-1"/></svg></div><button class="skip" id="skip">Skip intro</button>
+</div>
+<header class="hero" id="hero">
+  <img class="hero-media" id="heroFallback" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1920&q=85" alt="Romantic wedding floral decoration">
+  <video class="hero-media" id="heroVideo" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1920&q=85"><source src="https://assets.mixkit.co/videos/5224/5224-720.mp4" type="video/mp4"></video>
+  <div class="hero-shade"></div><div class="hero-content reveal"><p class="eyebrow" id="invitationMessage">Together with their families</p><h1><span id="groom">Ahad</span><i class="amp">&amp;</i><span id="bride">Ayesha</span></h1><p class="script" style="color:#f0dfbd">Request the pleasure of your company</p><div class="hero-countdown" id="heroCountdown" aria-label="Countdown to the wedding">
+  <div class="hero-time"><strong id="days">00</strong><span>Days</span></div>
+  <div class="hero-time"><strong id="hours">00</strong><span>Hours</span></div>
+  <div class="hero-time"><strong id="minutes">00</strong><span>Minutes</span></div>
+  <div class="hero-time"><strong id="seconds">00</strong><span>Seconds</span></div>
+</div><p id="celebration" class="script" hidden style="color:#f0dfbd;margin-top:22px">The celebration has begun!</p></div><div class="scroll">Scroll to explore<br>⌄</div>
+</header>
+<main>
+<section class="section"><div class="card welcome reveal"><div class="arabic" lang="ar" dir="rtl">بِسْمِ اللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ</div><div class="divider"><span>✦</span></div><p>“And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts.”</p><p class="support">With joyful hearts and the blessings of the Almighty and our beloved elders, we invite you to be part of the most cherished chapter of our journey.</p></div></section>
+<section class="section"><div class="scratch-heading reveal" style="text-align:center"><span class="script">A little surprise awaits</span><h2>Scratch to Reveal</h2></div><div class="scratch-wrap reveal"><div class="scratch-box" id="scratchBox"><div class="secret"><span class="eyebrow">Save the Date</span><b id="secretDate">14 February 2027</b><p>Two hearts, one beautiful beginning.</p></div><canvas id="scratch" aria-label="Scratch the gold surface to reveal the date"></canvas></div><div class="scratch-controls"><span id="scratchHint">Scratch the golden surface</span><button id="resetScratch">Play again</button></div></div></section>
+
+<section class="section" id="celebrationSection"><div class="reveal" style="text-align:center"><span class="script">The festivities</span><h2>Celebration Timeline</h2><div class="divider"><span>✦</span></div><p class="celebration-intro">A gathering of traditions, blessings and joyful moments. Select each occasion to explore the celebration.</p></div><div class="timeline reveal" id="timeline" aria-label="Interactive celebration timeline"></div></section>
+<section class="section"><div class="card reveal"><span class="script">The Destination</span><h2 id="venueName">The Grand Heritage Palace</h2><img class="venue-img" id="venuePhoto" src="https://images.unsplash.com/photo-1545232979-fbf68fe9b1af?auto=format&fit=crop&w=1200&q=80" alt="Wedding venue" loading="lazy"><p class="address" id="venueAddress">Royal Heritage Avenue, Jaipur, Rajasthan</p><a class="directions" id="directions" target="_blank" rel="noopener noreferrer" href="https://maps.google.com/">Get Directions</a></div></section>
+
+<section class="section"><div class="card closing reveal"><p>Your presence will make our celebration even more special.</p><div class="divider"><span>✦</span></div><div class="sign">With love and gratitude</div><strong id="closingNames">Ahad &amp; Ayesha</strong><p class="eyebrow" id="closingDate" style="margin-top:12px">14 February 2027</p></div></section>
+</main>
+<footer class="brand-footer" id="footerCredits">
+  <div class="footer-wrap">
+    <div class="footer-love"><span class="heart" aria-hidden="true">♥</span> Designed With Love By <span class="heart" aria-hidden="true">♥</span></div>
+    <div class="footer-brand-lockup">
+      <img class="footer-logo-img" src="data:image/png;base64,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" alt="Dawat Naama logo" width="44" height="46">
+      <span class="footer-brand-name">Dawat Naama</span>
+    </div>
+    <p class="footer-tagline">Where Every Invitation Becomes an Experience.</p>
+  </div>
+</footer>
+
+<script>
+/* Customize all names, dates, venue, events and image URLs here. weddingDate uses the visitor's local timezone. */
+const weddingConfig={
+ brideName:'Ayesha',groomName:'Ahad',monogram:'A&A',weddingDate:'2027-02-14T19:00:00',formattedDate:'Sunday, 14 February 2027',invitationMessage:'Together with their families',
+ venueName:'The Grand Heritage Palace',venueAddress:'100 Royal Heritage Avenue, Royal Garden Estate, Jaipur, Rajasthan',googleMapsUrl:'https://maps.google.com/?q=Jaipur+Palace',venuePhoto:'https://images.unsplash.com/photo-1545232979-fbf68fe9b1af?auto=format&fit=crop&w=1200&q=80',
+ heroVideo:'https://assets.mixkit.co/videos/5224/5224-720.mp4',
+ events:[
+  {name:'Mehendi',date:'Friday, 12 February 2027',time:'4:00 PM onwards',venue:'The Marigold Courtyard',description:'An afternoon of henna, music, vibrant colour and family traditions.'},
+  {name:'Haldi',date:'Saturday, 13 February 2027',time:'10:30 AM',venue:'The Lotus Pavilion',description:'A joyful ceremony filled with sunshine, turmeric blessings and laughter.'},
+  {name:'Nikah / Wedding Ceremony',date:'Sunday, 14 February 2027',time:'7:00 PM',venue:'Grand Durbar Ballroom',description:'The solemn vows and blessed beginning of a lifetime together.'},
+  {name:'Reception',date:'Monday, 15 February 2027',time:'8:00 PM',venue:'The Royal Crystal Lawns',description:'An evening celebration with our beloved family and friends.'}
+ ]
+};
+const $=id=>document.getElementById(id);
+function formatDate(date){return new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric'}).format(date)}
+function render(){
+ $('groom').textContent=weddingConfig.groomName;$('bride').textContent=weddingConfig.brideName;$('envNames').textContent=`${weddingConfig.groomName} & ${weddingConfig.brideName}`;$('seal').textContent=weddingConfig.monogram;
+ $('invitationMessage').textContent=weddingConfig.invitationMessage;$('secretDate').textContent=formatDate(new Date(weddingConfig.weddingDate));$('closingDate').textContent=weddingConfig.formattedDate;$('closingNames').textContent=`${weddingConfig.groomName} & ${weddingConfig.brideName}`;
+ $('venueName').textContent=weddingConfig.venueName;$('venueAddress').textContent=weddingConfig.venueAddress;$('venuePhoto').src=weddingConfig.venuePhoto;$('directions').href=weddingConfig.googleMapsUrl;
+ const timeline=$('timeline');let activeEvent=0;
+ const dateShort=e=>String(e.date||'').replace(/^[A-Za-z]+,\s*/,'');
+ const tabDateLabel=e=>{const m=String(e.date||'').match(/(\d{1,2})\s+([A-Za-z]+)/);return m?`${m[1]} ${m[2].slice(0,3).toUpperCase()}`:dateShort(e)};
+ function selectEvent(index){
+  activeEvent=(index+weddingConfig.events.length)%weddingConfig.events.length;
+  const e=weddingConfig.events[activeEvent];
+  timeline.querySelectorAll('.timeline-tab').forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===activeEvent));tab.tabIndex=i===activeEvent?0:-1});
+  timeline.querySelector('.event-panel').innerHTML=`
+    <div class="event-kicker-badge">
+      <span>Occasion ${String(activeEvent+1).padStart(2,'0')}</span>
+      <span class="badge-dot" aria-hidden="true">&#9670;</span>
+      <span>${escapeHTML(dateShort(e))}</span>
+    </div>
+    <h3 class="event-title">${escapeHTML(e.name)}</h3>
+    <div class="event-accent-line"><span>&#10022;</span></div>
+    <div class="event-meta-grid">
+      <div class="meta-item">
+        <span class="meta-tag">Time</span>
+        <span class="meta-val">${escapeHTML(e.time)}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-tag">Venue</span>
+        <span class="meta-val">${escapeHTML(e.venue)}</span>
+      </div>
+    </div>
+    <p class="event-desc">${escapeHTML(e.description)}</p>
+  `;
+  timeline.querySelector('.timeline-status').textContent=`Occasion ${String(activeEvent+1).padStart(2,'0')} of ${String(weddingConfig.events.length).padStart(2,'0')}`;
+ }
+ timeline.innerHTML=`
+  <div class="timeline-nav" role="tablist" aria-label="Wedding occasions">
+    ${weddingConfig.events.map((e,i)=>`<button class="timeline-tab" type="button" role="tab" aria-selected="${i===0}" aria-controls="eventPanel" id="eventTab${i}" tabindex="${i===0?0:-1}">
+      <span class="tab-dot">${String(i+1).padStart(2,'0')}</span>
+      <span class="tab-date">${escapeHTML(tabDateLabel(e))}</span>
+    </button>`).join('')}
+  </div>
+  <div class="event-panel" id="eventPanel" role="tabpanel" aria-live="polite"></div>
+  <div class="timeline-controls">
+    <button type="button" class="timeline-control" data-step="-1">&#8592; Previous</button>
+    <span class="timeline-status" aria-live="polite"></span>
+    <button type="button" class="timeline-control" data-step="1">Next &#8594;</button>
+  </div>
+ `;
+ timeline.querySelectorAll('.timeline-tab').forEach((tab,i)=>tab.addEventListener('click',()=>selectEvent(i)));
+ timeline.querySelectorAll('.timeline-tab').forEach((tab,i)=>tab.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const next=(i+(e.key==='ArrowRight'?1:-1)+weddingConfig.events.length)%weddingConfig.events.length;timeline.querySelectorAll('.timeline-tab')[next].focus();selectEvent(next)}}));
+ timeline.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>selectEvent(activeEvent+Number(button.dataset.step))));selectEvent(0);
+ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+function openIntro(){const envelope=$('envelope');if(envelope.classList.contains('open'))return;envelope.classList.add('open');setTimeout(()=>{$('intro').classList.add('dismissed');document.body.classList.remove('locked');$('heroVideo').style.display='block';$('heroVideo').play().catch(()=>{});},1050)}
+$('envelope').addEventListener('click',openIntro);$('envelope').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openIntro()}});$('skip').addEventListener('click',()=>{$('intro').classList.add('dismissed');document.body.classList.remove('locked');$('heroVideo').style.display='block';$('heroVideo').play().catch(()=>{})});
+$('audioToggle').addEventListener('click',async()=>{const audio=$('music');try{if(audio.paused){await audio.play();$('audioToggle').setAttribute('aria-label','Pause music')}else{audio.pause();$('audioToggle').setAttribute('aria-label','Play music')}}catch(e){console.info('Audio playback requires a user gesture or an available media URL.')}});
+function updateCountdown(){const delta=new Date(weddingConfig.weddingDate).getTime()-Date.now();if(delta<=0){$('heroCountdown').hidden=true;$('celebration').hidden=false;return}const units={days:86400000,hours:3600000,minutes:60000,seconds:1000};let remaining=delta;for(const [id,size] of Object.entries(units)){const value=Math.floor(remaining/size);$(id).textContent=String(value).padStart(2,'0');remaining%=size}}
+function startCountdown(){updateCountdown();setInterval(updateCountdown,1000)}
+/* Canvas foil scratch interaction with responsive sizing and sampled alpha threshold. */
+function initScratch(){const canvas=$('scratch'),box=$('scratchBox'),ctx=canvas.getContext('2d',{willReadFrequently:true});let scratching=false,cleared=false,lastCheck=0;function paint(){const r=box.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);canvas.style.width=r.width+'px';canvas.style.height=r.height+'px';ctx.setTransform(dpr,0,0,dpr,0,0);const g=ctx.createLinearGradient(0,0,r.width,r.height);g.addColorStop(0,'#d7bb87');g.addColorStop(.35,'#f3dfb7');g.addColorStop(.55,'#c5a46d');g.addColorStop(1,'#a88950');ctx.globalCompositeOperation='source-over';ctx.fillStyle=g;ctx.fillRect(0,0,r.width,r.height);ctx.strokeStyle='#fff7';ctx.lineWidth=1;ctx.strokeRect(12,12,r.width-24,r.height-24);ctx.fillStyle='#57472d';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='italic 600 19px Georgia';ctx.fillText('A Little Surprise Awaits You',r.width/2,r.height/2-11);ctx.font='500 10px Arial';ctx.fillText('SCRATCH TO REVEAL',r.width/2,r.height/2+18);cleared=false;canvas.style.opacity='1';$('scratchHint').textContent='Scratch the golden surface';}
+function scratch(e){const r=canvas.getBoundingClientRect(),scaleX=canvas.width/r.width,scaleY=canvas.height/r.height;ctx.globalCompositeOperation='destination-out';ctx.beginPath();ctx.arc((e.clientX-r.left)*scaleX,(e.clientY-r.top)*scaleY,24*Math.min(scaleX,scaleY),0,Math.PI*2);ctx.fill();if(Date.now()-lastCheck>180){lastCheck=Date.now();check()}}
+function check(){const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;let clear=0,samples=0;for(let i=3;i<data.length;i+=64){samples++;if(data[i]<20)clear++}if(samples&&clear/samples>=.65){cleared=true;canvas.style.opacity='0';$('scratchHint').textContent='✨ Revealed! Save the date.'}}
+canvas.addEventListener('pointerdown',e=>{if(cleared)return;scratching=true;canvas.setPointerCapture(e.pointerId);scratch(e)});canvas.addEventListener('pointermove',e=>{if(scratching)scratch(e)});canvas.addEventListener('pointerup',()=>scratching=false);canvas.addEventListener('pointercancel',()=>scratching=false);$('resetScratch').addEventListener('click',paint);new ResizeObserver(paint).observe(box);paint()}
+document.addEventListener('DOMContentLoaded',()=>{render();initScratch();startCountdown()});
+</script>
+</body>
+</html>
